@@ -8,7 +8,7 @@ class CreateProviderClients < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :provider_clients, [:provider_id, :client_id], unique: true
+    add_index :provider_clients, [ :provider_id, :client_id ], unique: true
 
     # Must match the enum in ProviderClient
     add_check_constraint :provider_clients,

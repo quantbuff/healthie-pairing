@@ -6,8 +6,8 @@ clients = %w[sam kim lee zoe].map do |n|
 end
 sam, kim, lee, zoe = clients
 
-[[ada, sam, "premium"], [ada, kim, "basic"], [ada, lee, "basic"],
- [ben, sam, "basic"], [ben, zoe, "premium"]].each do |provider, client, plan|
+[ [ ada, sam, "premium" ], [ ada, kim, "basic" ], [ ada, lee, "basic" ],
+ [ ben, sam, "basic" ], [ ben, zoe, "premium" ] ].each do |provider, client, plan|
   ProviderClient.find_or_create_by!(provider: provider, client: client) { |pc| pc.plan = plan }
 end
 

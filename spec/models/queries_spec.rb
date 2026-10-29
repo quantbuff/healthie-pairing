@@ -25,7 +25,7 @@ RSpec.describe "Core queries" do
     older = create(:journal_entry, client: sam, created_at: 3.days.ago)
     create(:journal_entry, client: kim)
 
-    expect(sam.journal_entries.chronological).to eq([older, newer])
+    expect(sam.journal_entries.chronological).to eq([ older, newer ])
   end
 
   it "returns entries across a provider's clients sorted by date" do
@@ -34,6 +34,6 @@ RSpec.describe "Core queries" do
     third  = create(:journal_entry, client: sam, created_at: 1.day.ago)
     create(:journal_entry, client: create(:client)) # not Ada's client
 
-    expect(ada.journal_entries.chronological).to eq([first, second, third])
+    expect(ada.journal_entries.chronological).to eq([ first, second, third ])
   end
 end

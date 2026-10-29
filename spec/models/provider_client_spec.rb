@@ -16,6 +16,6 @@ RSpec.describe ProviderClient do
     client = create(:client)
     a = create(:provider_client, client: client, plan: "premium")
     b = create(:provider_client, client: client, plan: "basic")
-    expect([a.plan, b.plan]).to eq(%w[premium basic])
+    expect([ a.plan, b.plan ]).to eq(%w[premium basic])
   end
 end
