@@ -1,5 +1,13 @@
-require 'rails_helper'
+# spec/models/provider_spec.rb
+require "rails_helper"
 
-RSpec.describe Provider, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Provider do
+  it "normalizes email to lowercase" do
+    expect(create(:provider, email: " ADA@Example.com ").email).to eq("ada@example.com")
+  end
+
+  it "rejects a duplicate email regardless of case" do
+    create(:provider, email: "ada@example.com")
+    expect(build(:provider, email: "ADA@example.com")).not_to be_valid
+  end
 end

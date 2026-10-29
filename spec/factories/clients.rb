@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :client do
-    name { "MyString" }
-    email { "MyString" }
+    sequence(:name) { |n| "Client #{n}" }
+    sequence(:email) { |n| "client#{n}@example.com" }
   end
 end
