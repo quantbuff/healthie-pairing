@@ -7,7 +7,6 @@ Rails 8.1 API app (Ruby 4.0, PostgreSQL): providers, clients, a join model that 
 - Setup: `bundle install && bin/rails db:create db:migrate db:seed`
 - Tests: `bundle exec rspec`
 - Console: `bin/rails console`
-- Gems install into `vendor/bundle`.
 
 ## Domain rules
 
