@@ -23,3 +23,4 @@ Rails 8.1 API app (Ruby 4.0, PostgreSQL): providers, clients, a join model that 
 - Sort journal entries with the `chronological` scope (`created_at`, then `id`).
 - Seeds must be idempotent (`find_or_create_by!`).
 - Don't add features or gems beyond what is asked. Ask before schema changes.
+- Never run `git commit` or `git push`. Leave changes uncommitted for the author to review and commit.
