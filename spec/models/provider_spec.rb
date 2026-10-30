@@ -10,6 +10,21 @@ RSpec.describe Provider do
     expect(build(:provider, name: "")).not_to be_valid
   end
 
+  describe "email format" do
+    it "accepts a well-formed email" do
+      expect(build(:provider, email: "ada@example.com")).to be_valid
+    end
+
+    it "rejects malformed emails" do
+      ["plainaddress", "ada@", "@example.com", "ada example@example.com"].each do |bad|
+        provider = build(:provider, email: bad)
+
+        expect(provider).not_to be_valid, "expected #{bad.inspect} to be invalid"
+        expect(provider.errors[:email]).to include("is invalid")
+      end
+    end
+  end
+
   it "destroys its provider links but keeps its clients" do
     link = create(:provider_client)
 
