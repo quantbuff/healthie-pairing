@@ -15,7 +15,7 @@ RSpec.describe Client do
     end
 
     it "rejects malformed emails" do
-      ["plainaddress", "sam@", "@example.com", "sam example@example.com"].each do |bad|
+      [ "plainaddress", "sam@", "@example.com", "sam example@example.com" ].each do |bad|
         client = build(:client, email: bad)
 
         expect(client).not_to be_valid, "expected #{bad.inspect} to be invalid"

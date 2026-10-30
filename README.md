@@ -37,6 +37,5 @@ Console: `bin/rails console`. The seeds create 2 providers, 4 clients, 5 pairing
 
 - No API or UI: this is models, queries, seeds and specs only.
 - Sorting uses `created_at`. A separate `entry_date` column would be better if clients can backdate entries.
-- For a very large dataset: keyset pagination on `(created_at, id)` instead of OFFSET, `includes` against N+1, partitioning entries by month, read replicas for reporting.
 - Authorization: providers should only see their own clients' entries. Not implemented.
 - The plan check constraint duplicates the enum values. A new plan needs a migration and an enum change.

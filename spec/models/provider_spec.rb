@@ -16,7 +16,7 @@ RSpec.describe Provider do
     end
 
     it "rejects malformed emails" do
-      ["plainaddress", "ada@", "@example.com", "ada example@example.com"].each do |bad|
+      [ "plainaddress", "ada@", "@example.com", "ada example@example.com" ].each do |bad|
         provider = build(:provider, email: bad)
 
         expect(provider).not_to be_valid, "expected #{bad.inspect} to be invalid"
