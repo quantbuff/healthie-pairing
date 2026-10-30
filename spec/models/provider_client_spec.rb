@@ -12,6 +12,17 @@ RSpec.describe ProviderClient do
     expect(build(:provider_client, plan: "gold")).not_to be_valid
   end
 
+  it "rejects an unknown plan at the database level" do
+    pc = create(:provider_client)
+    expect { pc.update_column(:plan, "gold") }.to raise_error(ActiveRecord::StatementInvalid, /provider_clients_plan_check/)
+  end
+
+  it "rejects a duplicate provider and client pair at the database level" do
+    pc = create(:provider_client)
+    dup = build(:provider_client, provider: pc.provider, client: pc.client)
+    expect { dup.save!(validate: false) }.to raise_error(ActiveRecord::RecordNotUnique)
+  end
+
   it "lets one client be premium with one provider and basic with another" do
     client = create(:client)
     a = create(:provider_client, client: client, plan: "premium")

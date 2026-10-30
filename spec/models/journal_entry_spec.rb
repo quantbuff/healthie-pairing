@@ -9,6 +9,14 @@ RSpec.describe JournalEntry do
     expect(build(:journal_entry, client: nil)).not_to be_valid
   end
 
+  it "rejects a missing client at the database level" do
+    expect { build(:journal_entry, client: nil).save!(validate: false) }.to raise_error(ActiveRecord::NotNullViolation)
+  end
+
+  it "rejects an unknown client at the database level" do
+    expect { build(:journal_entry, client_id: 0).save!(validate: false) }.to raise_error(ActiveRecord::InvalidForeignKey)
+  end
+
   describe ".chronological" do
     it "breaks created_at ties by id" do
       client = create(:client)

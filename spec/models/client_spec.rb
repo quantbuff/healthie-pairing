@@ -9,4 +9,9 @@ RSpec.describe Client do
     create(:client, email: "sam@example.com")
     expect(build(:client, email: "SAM@example.com")).not_to be_valid
   end
+
+  it "rejects a duplicate email at the database level" do
+    create(:client, email: "sam@example.com")
+    expect { build(:client, email: "sam@example.com").save!(validate: false) }.to raise_error(ActiveRecord::RecordNotUnique)
+  end
 end
