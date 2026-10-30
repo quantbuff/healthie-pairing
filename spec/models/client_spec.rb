@@ -2,7 +2,21 @@ require "rails_helper"
 
 RSpec.describe Client do
   it "normalizes email to lowercase" do
-    expect(create(:client, email: " SAM@Example.com ").email).to eq("sam@example.com")
+    expect(build(:client, email: " SAM@Example.com ").email).to eq("sam@example.com")
+  end
+
+  it "requires a name" do
+    expect(build(:client, name: "")).not_to be_valid
+  end
+
+  it "destroys its journal entries and provider links with it" do
+    entry = create(:journal_entry)
+    link = create(:provider_client, client: entry.client)
+
+    entry.client.destroy
+
+    expect(JournalEntry.exists?(entry.id)).to be(false)
+    expect(ProviderClient.exists?(link.id)).to be(false)
   end
 
   it "rejects a duplicate email regardless of case" do
