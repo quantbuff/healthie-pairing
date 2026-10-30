@@ -29,9 +29,9 @@ RSpec.describe "Core queries" do
   end
 
   it "returns entries across a provider's clients sorted by date" do
+    third  = create(:journal_entry, client: sam, created_at: 1.day.ago)
     first  = create(:journal_entry, client: sam, created_at: 3.days.ago)
     second = create(:journal_entry, client: kim, created_at: 2.days.ago)
-    third  = create(:journal_entry, client: sam, created_at: 1.day.ago)
     create(:journal_entry, client: create(:client)) # not Ada's client
 
     expect(ada.journal_entries.chronological).to eq([ first, second, third ])
